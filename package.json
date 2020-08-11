@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "vercel-build": "npm run build",
         "lint": "standard",
         "lint:fix": "standard --fix",
         "dev": "webpack-dev-server",

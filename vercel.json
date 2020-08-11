@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "alias": ["wolftrax-react.com", "wolftrax-react"],
+    "builds": [
+        {
+            "use": "@vercel/static-build",
+            "src": "package.json"
+        }
+    ]
+}
