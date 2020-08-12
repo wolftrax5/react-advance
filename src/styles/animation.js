@@ -13,3 +13,14 @@ const fadeInKeyFrames = keyframes`
 export const fadeIn = ({ time = '1s', type = 'ease' } = {}) => css`
     animation: ${time} ${fadeInKeyFrames} ${type};
 `
+const slideInKeyFrames = keyframes`
+    from {
+        transform: translate3d(0, -100px, 0) scale(0.5);
+    }
+    to {
+        transform: translate3d(0,0,0) scale(0.5);
+    }
+`
+export const slideIn = ({ time = '1s', type = 'ease' } = {}) => (
+  css`animation: ${time} ${slideInKeyFrames} ${type} forwards;`
+)
