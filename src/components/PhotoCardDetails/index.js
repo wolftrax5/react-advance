@@ -1,6 +1,6 @@
 import React from 'react'
 import { PhotoCard } from '../PhotoCard'
-
+import { PhotoLoader } from '../PhotoLoader'
 /* GraphQL and Apollo */
 import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
@@ -24,7 +24,7 @@ export const PhotoCardDetails = (props) => {
   return (
     <>
       {loading
-        ? <PhotoCard />
+        ? <PhotoLoader />
         : <PhotoCard {...data.photo} />}
     </>
   )
