@@ -6,6 +6,7 @@ import { FavButton } from '../FavButton'
 
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
+import { Link } from '@reach/router'
 
 // Import const TOGGLE_LIKE
 const TOGGLE_LIKE = gql`
@@ -35,11 +36,11 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_CARD }) => {
     <Article ref={ref}>
       {show &&
         <>
-          <a href={`/?detail=${id}`}>
+          <Link to={`/detail/${id}`}>
             <ImgWrapper>
               <Img src={src} />
             </ImgWrapper>
-          </a>
+          </Link>
           <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
         </>}
     </Article>
