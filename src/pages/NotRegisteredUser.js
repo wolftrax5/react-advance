@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { UserForm } from '../components/UserForm'
 import { useAuthValue } from '../contexts/AuthContext'
 
@@ -13,6 +13,8 @@ export const NotRegisteredUser = () => {
   }
 
   return (
-    <UserForm onSubmit={e => handleSubmit(e)} />
+    <>
+      <UserForm onSubmit={e => handleSubmit(e)} title='LogIn' />
+    </>
   )
 }

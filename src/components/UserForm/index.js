@@ -1,24 +1,26 @@
-import React, { useState } from 'react'
-
+import React, { useState, Fragment } from 'react'
+import { Form, Input, Button, Title } from './styles'
 const useInputValue = (initialValue) => {
   const [value, setValue] = useState(initialValue)
   const onChange = e => setValue(e.target.value)
   return { value, onChange }
 }
 
-export const UserForm = ({ onSubmit }) => {
+export const UserForm = ({ onSubmit, title }) => {
   const email = useInputValue('')
   const password = useInputValue('')
-  return (
-    <form onSubmit={onSubmit}>
-      <input
+  return (<>
+    <Title> {title} </Title>
+    <Form onSubmit={onSubmit}>
+      <Input
         type='email' placeholder='Email'
         {...email}
       />
-      <input
+      <Input
         type='password' placeholder='Password'
         {...password}
       />
-      <button>Iniciar Seccion</button>
-    </form>)
+      <Button>{title}</Button>
+    </Form>
+          </>)
 }
