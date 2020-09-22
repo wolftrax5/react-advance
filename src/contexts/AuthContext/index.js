@@ -14,6 +14,11 @@ const reducer = (state, action) => {
         ...state,
         isAuth: false
       }
+    case 'REGISTER':
+      return {
+        ...state,
+        isAuth: action.payload.isAuth
+      }
     default:
       return state
   }
