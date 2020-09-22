@@ -1,4 +1,5 @@
 import React from 'react'
+import { UserForm } from '../components/UserForm'
 import { useAuthValue } from '../contexts/AuthContext'
 
 export const NotRegisteredUser = () => {
@@ -12,8 +13,6 @@ export const NotRegisteredUser = () => {
   }
 
   return (
-    <form onSubmit={e => handleSubmit(e)}>
-      <button>Iniciar sesión</button>
-    </form>
+    <UserForm onSubmit={e => handleSubmit(e)} />
   )
 }
