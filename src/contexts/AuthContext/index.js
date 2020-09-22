@@ -29,7 +29,7 @@ const reducer = (state, action) => {
 }
 
 const initialState = {
-  isAuth: getToken()
+  isAuth: !!getToken()
 }
 
 export const AuthProvider = ({ children }) => {
