@@ -5,8 +5,8 @@ export const REGISTER = gql`
     signup(input: $input)
   }
 `
-export const SIGNIN_MUTATION = gql`
-  mutation signin($input: UserCredentials!) {
-    signin(input: $input)
+export const LOGIN = gql`
+  mutation login($input: UserCredentials!) {
+    login(input: $input)
   }
 `

@@ -1,35 +1,47 @@
-import React, { useState } from 'react'
-import { useMutation } from '@apollo/react-hooks'
+import React from 'react'
 import { UserForm } from '../components/UserForm'
 import { useAuthValue } from '../contexts/AuthContext'
-import { REGISTER } from '../graphql-tags/AuthMutations'
+import { useRegisterMutation, useLoginMutation } from '../hooks/useAuth'
 
 export const NotRegisteredUser = () => {
   const [{}, dispatch] = useAuthValue()
-  const [err, setError] = useState(null)
 
-  const handleSubmit = () => {
-    dispatch({
-      type: 'LOGIN'
-    })
-  }
-  const [signup, { loading }] = useMutation(REGISTER)
+  const { register, error: errorReg, loading: loadingReg } = useRegisterMutation()
+  const { login, error: errorLog, loading: loadingLog } = useLoginMutation()
 
-  const handleOnSubmit = ({ email, password }) => {
-    const input = { email, password }
-    signup({
-      variables: { input }
-    }).then(() => {
-      dispatch({
-        type: 'REGISTER',
-        payload: { isAuth: true }
+  const handleSubmit = ({ email, password }) => {
+    login(email, password)
+      .then((data) => {
+        dispatch({
+          type: 'LOGIN',
+          payload: data
+        })
       })
-    }).catch((error) => { setError(error.graphQLErrors[0].message) })
+      .catch(() => {
+        console.log('La contraseña no es correcta o el usuario no existe.')
+      })
   }
+
+  const registerSubmit = ({ email, password }) => {
+    register(email, password)
+      .then(() => {
+        dispatch({
+          type: 'REGISTER',
+          payload: { isAuth: true }
+        })
+      })
+      .catch(() => {
+        console.log('El usuario ya existe o hay algún problema.')
+      })
+  }
+
+  const errorRegMsg = errorReg && 'El usuario ya existe o hay algún problema.'
+  const errorLogMsg = errorLog && 'La contraseña no es correcta o el usuario no existe.'
+
   return (
     <>
-      <UserForm onSubmit={handleSubmit} title='LogIn' />
-      <UserForm disabled={loading} error={err} onSubmit={handleOnSubmit} title='Register' />
+      <UserForm disabled={loadingLog} error={errorLogMsg} onSubmit={handleSubmit} title='LogIn' />
+      <UserForm disabled={loadingReg} error={errorRegMsg} onSubmit={registerSubmit} title='Register' />
     </>
   )
 }
