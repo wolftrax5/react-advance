@@ -1,6 +1,5 @@
 import React from 'react'
 import { ImgWrapper, Img, Article } from './styles'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useNearScreen } from '../../hooks/useNearScreen'
 import { FavButton } from '../FavButton'
 
@@ -10,8 +9,8 @@ import { Link } from '@reach/router'
 
 // Import const TOGGLE_LIKE
 const TOGGLE_LIKE = gql`
-  mutation likeAnonymousPhoto($input: LikePhoto!) {
-    likeAnonymousPhoto(input: $input) {
+  mutation likePhoto($input: LikePhoto!) {
+    likePhoto(input: $input) {
       id
       liked
       likes
@@ -20,16 +19,13 @@ const TOGGLE_LIKE = gql`
 
 const DEFAULT_CARD = 'https://images.unsplash.com/photo-1520561805070-83c413349512?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
 
-export const PhotoCard = ({ id, likes = 0, src = DEFAULT_CARD }) => {
-  const key = `like-${id}`
-  const [liked, setLiked] = useLocalStorage(key, false)
+export const PhotoCard = ({ id, likes = 0, liked, src = DEFAULT_CARD }) => {
   const [show, ref] = useNearScreen()
   const [toggleLike] = useMutation(TOGGLE_LIKE, {
     variables: { input: { id } }
   })
 
   const handleFavClick = () => {
-    setLiked(!liked)
     toggleLike()
   }
   return (
