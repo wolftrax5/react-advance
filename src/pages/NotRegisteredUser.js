@@ -1,23 +1,19 @@
 import React from 'react'
 import { useAuthValue } from '../contexts/AuthContext'
 
-export const User = () => {
+export const NotRegisteredUser = () => {
   const [{}, dispatch] = useAuthValue()
 
   const handleSubmit = e => {
     e.preventDefault()
     dispatch({
-      type: 'LOGOUT'
+      type: 'LOGIN'
     })
   }
 
   return (
-    <div>
-
-      <form onSubmit={e => handleSubmit(e)}>
-        <button>LogOut</button>
-      </form>
-
-    </div>
+    <form onSubmit={e => handleSubmit(e)}>
+      <button>Iniciar sesión</button>
+    </form>
   )
 }

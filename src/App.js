@@ -5,15 +5,13 @@ import { Home } from './pages/Home'
 import { Detail } from './pages/Detail'
 import { Favs } from './pages/Favs'
 import { User } from './pages/User'
-import { NotRegisterUser } from './pages/NotRegisterUser'
+import { NotRegisteredUser } from './pages/NotRegisteredUser'
 import { Logo } from './components/Logo'
 import { NavBar } from './components/NavBar'
-
-const UserLogged = ({ children }) => {
-  return children({ isAuth: false })
-}
+import { useAuthValue } from './contexts/AuthContext'
 
 export const App = () => {
+  const [{ isAuth }] = useAuthValue()
   return (
     <>
       <Logo />
@@ -25,20 +23,17 @@ export const App = () => {
         <Detail path='/detail/:detailId' />
       </Router>
 
-      <UserLogged>
-        {
-          ({ isAuth }) =>
-            isAuth
-              ? <Router>
-                <Favs path='/favs' />
-                <User path='/user' />
-                </Router>
-              : <Router>
-                <NotRegisterUser path='/favs' />
-                <NotRegisterUser path='/user' />
-              </Router>
-        }
-      </UserLogged>
+      {
+        isAuth
+          ? <Router>
+            <Favs path='/favs' />
+            <User path='/user' />
+            </Router>
+          : <Router>
+            <NotRegisteredUser path='/favs' />
+            <NotRegisteredUser path='/user' />
+            </Router>
+      }
       <NavBar />
     </>
   )
