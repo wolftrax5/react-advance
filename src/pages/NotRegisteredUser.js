@@ -11,10 +11,10 @@ export const NotRegisteredUser = () => {
 
   const handleSubmit = ({ email, password }) => {
     login(email, password)
-      .then((data) => {
+      .then((response) => {
         dispatch({
           type: 'LOGIN',
-          payload: data
+          payload: { token: response.data.login }
         })
       })
       .catch(() => {
@@ -24,10 +24,10 @@ export const NotRegisteredUser = () => {
 
   const registerSubmit = ({ email, password }) => {
     register(email, password)
-      .then(() => {
+      .then((response) => {
         dispatch({
           type: 'REGISTER',
-          payload: { isAuth: true }
+          payload: { isAuth: true, token: response.data.signup }
         })
       })
       .catch(() => {
