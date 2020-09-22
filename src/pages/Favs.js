@@ -1,5 +1,10 @@
 import React from 'react'
-
-export const Favs = () => (
-  <h1>Favs</h1>
-)
+import { ListOfFavs } from '../components/ListOfFavs'
+export const Favs = () => {
+  return (
+    <>
+      <h1>Favs</h1>
+      <ListOfFavs />
+    </>
+  )
+}
