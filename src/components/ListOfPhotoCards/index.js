@@ -1,11 +1,11 @@
 import React from 'react'
 import { PhotoCard } from '../PhotoCard'
 import { useFetchPhoto } from '../../hooks/useFetchPhoto'
-
+import { Spinner } from '../Spinner'
 export const ListOfPhotoCards = ({ categoryId }) => {
   const { loading, error, data } = useFetchPhoto(categoryId)
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <Spinner />
   if (error) return <p>error...</p>
 
   return (

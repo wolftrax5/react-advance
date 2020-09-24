@@ -65,3 +65,12 @@ export const skeletonAnimation = ({
     );
     position: relative;
   `
+const spinKeyframes = keyframes`
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+`
+export const spin = ({ time = '1s', type = 'linear' } = {}) => css`animation: ${time} ${spinKeyframes} ${type} infinite`
