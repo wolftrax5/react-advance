@@ -2,7 +2,7 @@ import React from 'react'
 import { useAuthValue } from '../contexts/AuthContext'
 import { SubmintButton } from '../components/SubmitButton'
 
-export const User = () => {
+export default () => {
   const [{}, dispatch] = useAuthValue()
 
   const handleSubmit = e => {
