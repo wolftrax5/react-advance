@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { ImgWrapper, Img, Article } from './styles'
 import { useNearScreen } from '../../hooks/useNearScreen'
 import { FavButton } from '../FavButton'
@@ -41,4 +42,10 @@ export const PhotoCard = ({ id, likes = 0, liked, src = DEFAULT_CARD }) => {
         </>}
     </Article>
   )
+}
+PhotoCard.propTypes = {
+  id: PropTypes.string,
+  likes: PropTypes.number,
+  liked: PropTypes.bool,
+  src: PropTypes.string
 }
