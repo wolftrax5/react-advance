@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAuthValue } from '../contexts/AuthContext'
+import { SubmintButton } from '../components/SubmitButton'
 
 export const User = () => {
   const [{}, dispatch] = useAuthValue()
@@ -15,7 +16,7 @@ export const User = () => {
     <div>
 
       <form onSubmit={e => handleSubmit(e)}>
-        <button>LogOut</button>
+        <SubmintButton>LogOut</SubmintButton>
       </form>
 
     </div>

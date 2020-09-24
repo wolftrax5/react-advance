@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Form, Input, Button, Title, Error } from './styles'
+import { Form, Input, Title, Error } from './styles'
+import { SubmintButton } from '../SubmitButton'
+
 const useInputValue = (initialValue) => {
   const [value, setValue] = useState(initialValue)
   const onChange = e => setValue(e.target.value)
@@ -27,8 +29,8 @@ export const UserForm = ({ onSubmit, title, error, disabled }) => {
         type='password' placeholder='Password'
         {...password}
       />
-      <Button disabled={disabled}>{title}</Button>
+      <SubmintButton disabled={disabled}>{title}</SubmintButton>
     </Form>
     {error && <Error>{error}</Error>}
-          </>)
+  </>)
 }

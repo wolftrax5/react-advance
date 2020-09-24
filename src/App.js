@@ -1,10 +1,11 @@
 import React from 'react'
 import { GlobalStyle } from './styles/GlobalStyles'
-import { Router } from '@reach/router'
+import { Router, Redirect } from '@reach/router'
 import { Home } from './pages/Home'
 import { Detail } from './pages/Detail'
 import { Favs } from './pages/Favs'
 import { User } from './pages/User'
+import { NotFound } from './pages/NotFound'
 import { NotRegisteredUser } from './pages/NotRegisteredUser'
 import { Logo } from './components/Logo'
 import { NavBar } from './components/NavBar'
@@ -18,22 +19,18 @@ export const App = () => {
       <GlobalStyle />
 
       <Router>
+        <NotFound default />
         <Home path='/' />
         <Home path='/pet/:categoryId' />
         <Detail path='/detail/:detailId' />
-      </Router>
+        {!isAuth && <NotRegisteredUser path='/login' />}
+        {!isAuth && <Redirect from='/favs' to='/login' />}
+        {!isAuth && <Redirect from='/user' to='/login' />}
+        {isAuth && <Redirect from='/login' to='/' />}
 
-      {
-        isAuth
-          ? <Router>
-            <Favs path='/favs' />
-            <User path='/user' />
-            </Router>
-          : <Router>
-            <NotRegisteredUser path='/favs' />
-            <NotRegisteredUser path='/user' />
-            </Router>
-      }
+        <Favs path='/favs' />
+        <User path='/user' />
+      </Router>
       <NavBar />
     </>
   )
