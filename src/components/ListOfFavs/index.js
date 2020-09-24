@@ -6,7 +6,9 @@ export const ListOfFavs = () => {
   const { loading, error, data } = useFetchFavs()
 
   if (loading) return <p>Loading...</p>
-  if (error) return <p>error...</p>
+  if (error) {
+    return <p>error...{error.message}</p>
+  }
 
   return (
     <Grid>

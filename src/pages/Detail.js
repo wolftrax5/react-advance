@@ -1,8 +1,11 @@
 import React from 'react'
 import { PhotoCardDetails } from '../components/PhotoCardDetails'
+import { Layout } from '../components/Layout'
 
 export const Detail = ({ detailId }) => {
   return (
-    <PhotoCardDetails id={detailId} />
+    <Layout title={`Photo ${detailId}`}>
+      <PhotoCardDetails id={detailId} />
+    </Layout>
   )
 }
