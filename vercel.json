@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "alias": ["wolftrax-react.com", "wolftrax-react"],
+    "alias": ["wolftrax-react.me", "wolftrax-react"],
     "builds": [
         {
             "use": "@vercel/static-build",
