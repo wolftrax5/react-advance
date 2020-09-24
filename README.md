@@ -10,3 +10,4 @@ Repositorio de Practica [Curso Avanzado de React de Platzi](https://platzi.com/c
 - styled-componets
 - graphql / @apollo
 - reach/router
+- PropTypes
